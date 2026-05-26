@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Checkout • Shmuelal</title>
+    <link rel="icon" href="images/core/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/core/logo.png" alt="Shmuelal Logo" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="checkout-container">
+            <div class="container">
+                <h1 class="checkoutpage-h1">Checkout</h1>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="checkout-data">
+                        <h1>CONTACT INFO</h1>
+                        <input type="text" id="email" placeholder="Email">
+                        <div style="display: flex; justify-content: center;">
+                            <input type="text" style="width: calc(47.5% - 10px); margin-right: 5px;" id="firstname" placeholder="First Name">
+                            <input type="text" style="width: calc(47.5% - 10px); margin-left: 10px;" id="lastname" placeholder="Last Name">
+                        </div>
+                        <input type="text" id="address-1" placeholder="Address Line 1">
+                        <input type="text" id="address-2" placeholder="Address Line 2">
+                        <div style="display: flex; justify-content: center;">
+                            <input type="text" style="width: calc(47.5% - 10px); margin-right: 5px;" id="city" placeholder="City">
+                            <input type="text" style="width: calc(47.5% - 10px); margin-left: 10px;" id="postal-code" placeholder="Postal Code">
+                        </div>
+                        <input type="text" id="phone-number" placeholder="Phone Number">
+                    </div>
+                    <div class="checkout-pricing-container">
+                        <h1>SUMMARY</h1>
+                        <div style="display: flex; align-items: center;">
+                            <input style="width:50%; margin: 0 0 0 44px;"type="text" id="coupon-code" placeholder="Gift Card / Coupon Code">
+                            <button style="background: #000; margin: 0 12px; border-radius: 40px; padding: 14px 0; width: 100px; font-size: 15px;" id="coupon-code-btn">APPLY</button>
+                        </div>
+                        <div class="checkout-pricing" style="margin: 8px 68px 0 58px; padding-bottom: 8px; border-bottom: 1px solid #222;">
+                            <h2 style="font-size: 22px;">Total</h2>
+                            <h2 id="total-price" style="font-size: 22px;">$1200</h2>
+                        </div>
+                        <div style="padding: 0 12px; margin: 0 45px 0 48px; height: 250px; overflow-y: scroll;">
+                            <div id="seats-list">
+                                <div class="checkout-pricing">
+                                    <h2>Seats</h2>
+                                    <h2 id="seats-price">$0</h2>
+                                </div>
+                            </div>
+                            <div id="upgrades-list">
+                                <div class="checkout-pricing split">
+                                    <h2>Upgrades</h2>
+                                    <h2 id="upgrades-price">$0</h2>
+                                </div>
+                            </div>
+                            <div id="discounts-list">
+                                <div class="checkout-pricing split">
+                                    <h2>Discounts</h2>
+                                    <h2 id="discount-price">$0</h2>
+                                </div>
+                                <div class="checkout-pricing" id="no-discount-div">
+                                    <h3>No Discount Selected</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkoutpage-details" style="display: flex; justify-content: center;">
+                    <label for="payment-method" style="font-weight: 500;">Payment Method:</label>
+                    <select class="payment-method" id="payment-method">
+                        <option value="credit">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="bit">Bit (ביט)</option>
+                        <option disabled value="bank">Cash</option>
+                    </select>
+                </div>
+                <button class="checkoutpage-btn" id="confirm-btn">CONFIRM ORDER</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Copyright © 2024 Shmuelal Ltd. All rights reserved.</p>
+        <hr>
+        <div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedSeats = new URLSearchParams(window.location.search).get('seats');
+            const selectedUpgrades = new URLSearchParams(window.location.search).get('upgrades');
+            console.log(selectedSeats);
+            console.log(selectedUpgrades);
+            if (selectedSeats) {
+                const seatsList = document.getElementById('seats-list');
+                const upgradesList = document.getElementById('upgrades-list');
+                let totalPrice = 0;
+                let totalSeatsPrice = 0;
+                let totalUpgradesPrice = 0;
+                let selectedSeatNumbers = [];
+                let selectedUpgradesNumbers = [];
+
+                const seatsPriceElement = document.getElementById("seats-price");
+                const upgradesPriceElement = document.getElementById("upgrades-price");
+                const totalPriceElement = document.getElementById("total-price");
+
+                let seatPrice = 800;
+                const validSeats = /^[A-G][1-6]$/;
+                const validUpgrades = /^(10|[1-9])$/;
+
+                selectedSeats.split(',').forEach(seat => {
+                    console.log(validSeats.test(seat));
+                    if (validSeats.test(seat)) {
+                        if (selectedSeatNumbers.includes(seat)) {
+                            alert(`Dupliacte seats found. Redirecting to Order page:`);
+                            window.location.href = 'order.html';
+                        } else {
+                            const div = document.createElement('div');
+                            div.className = "checkout-pricing"
+                            const h3left = document.createElement('h3');
+                            h3left.textContent = `Seat ${seat}`
+                            div.appendChild(h3left);
+                            const h3right = document.createElement('h3');
+                            h3right.textContent = `$${seatPrice}`
+                            div.appendChild(h3right);
+                            seatsList.appendChild(div);
+                            totalPrice += seatPrice;
+                            totalSeatsPrice += seatPrice;
+                            selectedSeatNumbers.push(seat);
+                        }
+                    } else {
+                        alert('Invalid seats. Redirecting to Order page:');
+                        window.location.href = 'order.html';
+                    }
+                });
+
+                if (selectedUpgrades !== null) {
+                    const upgradePrices = {
+                        '1': 0,
+                        '2': 0,
+                        '3': 20,
+                        '4': 15,
+                        '5': 75,
+                        '6': 25,
+                        '7': 35,
+                        '8': 40,
+                        '9': 50,
+                        '10': 125
+                    };
+
+                    const upgradeNames = {
+                        '1': 'Kosher Meal',
+                        '2': 'Vegetarian Meal',
+                        '3': 'Extra Luggage',
+                        '4': 'Unlimited Wi-Fi',
+                        '5': 'ANC Headphones',
+                        '6': 'Priority Boarding',
+                        '7': 'Comfort Kit',
+                        '8': 'Full Board',
+                        '9': 'Travel Insurance',
+                        '10': 'Additional Pet'
+                    };
+
+                    selectedUpgrades.split(',').forEach(upgrade => {
+                        console.log(validUpgrades.test(upgrade));
+                        if (validUpgrades.test(upgrade)) {
+                            if (selectedUpgradesNumbers.includes(upgrade)) {
+                                alert(`Dupliacte upgrades found. Redirecting to Order page:`);
+                                window.location.href = 'order.html';
+                            } else {
+                                const div = document.createElement('div');
+                                div.className = "checkout-pricing"
+                                itemName = upgradeNames[upgrade];
+                                itemPrice = upgradePrices[upgrade];
+
+                                if (itemPrice === 0) {
+                                    itemPrice = "FREE";
+                                } else {
+                                    totalPrice += itemPrice;
+                                    totalUpgradesPrice += itemPrice;
+                                    itemPrice = `$${itemPrice}`;
+                                }
+                                const h3left = document.createElement('h3');
+                                h3left.textContent = itemName;
+                                div.appendChild(h3left);
+                                const h3right = document.createElement('h3');
+                                h3right.textContent = itemPrice
+                                div.appendChild(h3right);
+                                upgradesList.appendChild(div);
+                                selectedUpgradesNumbers.push(upgrade);
+                            }
+                        } else {
+                            alert('Invalid seats. Redirecting to Order page:');
+                            window.location.href = 'order.html';
+                        }
+                        document.getElementById('coupon-code-btn').addEventListener('click', () => {
+                            const code = document.getElementById('coupon-code').value;
+                            const noDiscountDiv = document.getElementById('no-discount-div');
+                            if (noDiscountDiv) {
+                                if (code.toUpperCase() === "10OFF") {
+                                    const discountsList = document.getElementById("discounts-list");
+                                    let discount = totalPrice * 0.1;
+                                    totalPrice = totalPrice * 0.9;
+                                    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+                                    document.getElementById('discount-price').textContent = `-$${discount}`
+                                    noDiscountDiv.remove();
+
+                                    const div = document.createElement('div');
+                                    div.className = "checkout-pricing"
+                                    const h3left = document.createElement('h3');
+                                    h3left.textContent = code.toLowerCase();
+                                    div.appendChild(h3left);
+                                    const h3right = document.createElement('h3');
+                                    div.appendChild(h3right);
+                                    h3right.textContent = `-$${discount}`
+                                    discountsList.appendChild(div);
+                                } else if (code.toUpperCase() === "בעל הבית השתגע") {
+                                    const discountsList = document.getElementById("discounts-list");
+                                    let discount = totalPrice;
+                                    totalPrice = totalPrice * 0;
+                                    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+                                    document.getElementById('discount-price').textContent = `-$${discount}`
+                                    noDiscountDiv.remove();
+
+                                    const div = document.createElement('div');
+                                    div.className = "checkout-pricing"
+                                    const h3left = document.createElement('h3');
+                                    h3left.textContent = code;
+                                    div.appendChild(h3left);
+                                    const h3right = document.createElement('h3');
+                                    div.appendChild(h3right);
+                                    h3right.textContent = `-$${discount}`
+                                    discountsList.appendChild(div);
+                                }
+                            }
+                        });
+
+                        upgradesPriceElement.textContent = `$${totalUpgradesPrice.toFixed(2)}`;
+                        seatsPriceElement.textContent = `$${totalSeatsPrice.toFixed(2)}`
+                        totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`
+                    });
+                }
+            } else {
+                alert('No selected seats found. Redirecting to Order page:');
+                window.location.href = 'order.html';
+            }
+        });
+
+        document.getElementById('confirm-btn').addEventListener('click', () => {
+            const email = document.getElementById('email');
+            const firstName = document.getElementById('firstname');
+            const lastName = document.getElementById('lastname');
+            const address1 = document.getElementById('address-1');
+            const city = document.getElementById('city');
+            const postalCode = document.getElementById('postal-code');
+            const phoneNumber = document.getElementById('phone-number');
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let errorColor = "#ff8080"
+
+            email.style.backgroundColor = "#fff";
+            firstName.style.backgroundColor = "#fff";
+            lastName.style.backgroundColor = "#fff";
+            address1.style.backgroundColor = "#fff";
+            city.style.backgroundColor = "#fff";
+            postalCode.style.backgroundColor = "#fff";
+            phoneNumber.style.backgroundColor = "#fff";
+            
+
+            if (emailPattern.test(email.value) && firstName.value !== "" && lastName.value !== "" && address1.value !== "" && city.value !== "" && postalCode.value !== "" && phoneNumber.value !== "") {
+                alert(`We're currently unable to process orders, and rest assured, your details have not been saved. Please check back later for updates!`);
+            } else {
+                if (email.value === "") {
+                    email.style.backgroundColor = errorColor;
+                }
+
+                if (firstName.value === "") {
+                    firstName.style.backgroundColor = errorColor;
+                }
+
+                if (lastName.value === "") {
+                    lastName.style.backgroundColor = errorColor;
+                }
+
+                if (address1.value === "") {
+                    address1.style.backgroundColor = errorColor;
+                }
+
+                if (city.value === "") {
+                    city.style.backgroundColor = errorColor;
+                }
+
+                if (postalCode.value === "") {
+                    postalCode.style.backgroundColor = errorColor;
+                }
+
+                if (phoneNumber.value === "") {
+                    phoneNumber.style.backgroundColor = errorColor;
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>

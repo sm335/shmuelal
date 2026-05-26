@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Gallery • Shmuelal</title>
+    <link rel="icon" href="images/core/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/core/logo.png" alt="Shmuelal Logo" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="gallery">
+        <article class="gallery-item">
+            <img src="images/gallery/1.png" alt="Gallery Image 1" class="imagee">
+            <div class="gallery-item-info">
+                <p class="image-caption">When it comes to ruling the skies with comfort, Shmuelal is truly the "Meleh Hatayarut" - because why should the sky have all the fun?</p>
+                <span>Posted by <span class="author-name">Shmuel</span></span> |
+                <span class="post-date" data-post-date="2024-02-9">Feb 9, 2024</span> |
+                <span class="time-ago"></span>
+            </div>
+        </article>
+        <article class="gallery-item">
+            <img src="images/gallery/2.png" alt="Gallery Image 1" class="imagee">
+            <div class="gallery-item-info">
+                <p class="image-caption">
+                    A Shmuelal plane glides into the sunset, seemingly chasing the day - because at Shmuelal, even the sun can't resist following the "King of Tourism" home.</p>
+                <span>Posted by <span class="author-name">Shmuel</span></span> |
+                <span class="post-date" data-post-date="2024-02-07">Feb 7, 2024</span> |
+                <span class="time-ago"></span>
+            </div>
+        </article>
+        <article class="gallery-item">
+            <img src="images/gallery/3.png" alt="Gallery Image 1" class="imagee">
+            <div class="gallery-item-info">
+                <p class="image-caption">
+                    In Shmuelal's cabin, every seat is a throne and every screen a scepter, serving up royal entertainment at 30,000 feet. Here, 'Meleh Hatayarut' isn't just a motto, it's a promise with every pixel.</p>
+                <span>Posted by <span class="author-name">Shmuel</span></span> |
+                <span class="post-date" data-post-date="2024-02-03">Feb 3, 2024</span> |
+                <span class="time-ago"></span>
+            </div>
+        </article>
+        <article class="gallery-item">
+            <img src="images/gallery/4.png" alt="Gallery Image 1" class="imagee">
+            <div class="gallery-item-info">
+                <p class="image-caption">A Shmuelal jet glimmers on the runway, its reflection on the slick tarmac a mirror to the sky's whims, ready to soar with the promise of royal service and regal destinations.</p>
+                <span>Posted by <span class="author-name">Shmuel</span></span> |
+                <span class="post-date" data-post-date="2024-02-01">Feb 1, 2024</span> |
+                <span class="time-ago"></span>
+            </div>
+        </article>
+        <article class="gallery-item">
+            <img src="images/gallery/5.png" alt="Gallery Image 1" class="imagee">
+            <div class="gallery-item-info">
+                <p class="image-caption">In Shmuelal, the flight experience has a vibe that even Andrew Tate would approve of — King of Tourism.</p>
+                <span>Posted by <span class="author-name">Shmuel</span></span> |
+                <span class="post-date" data-post-date="2024-01-30">Jan 30, 2024</span> |
+                <span class="time-ago"></span>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <p>Copyright © 2024 Shmuelal Ltd. All rights reserved.</p>
+        <hr>
+        <div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.gallery-item').forEach(function(post) {
+                var postDateElement = post.querySelector('.post-date');
+                var timeAgoElement = post.querySelector('.time-ago');
+                
+                var postDate = new Date(postDateElement.getAttribute('data-post-date'));
+                var now = new Date();
+                var difference = now - postDate;
+                
+                var seconds = Math.floor(difference / 1000);
+                var minutes = Math.floor(seconds / 60);
+                var hours = Math.floor(minutes / 60);
+                var days = Math.floor(hours / 24);
+
+                if (days > 0) {
+                    timeAgoElement.textContent = `${days} day${days > 1 ? 's' : ''} ago`;
+                } else if (hours > 0) {
+                    timeAgoElement.textContent = `${hours} hour${hours > 1 ? 's' : ''} ago`;
+                } else if (minutes > 0) {
+                    timeAgoElement.textContent = `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+                } else {
+                    timeAgoElement.textContent = 'Just now';
+                }
+            });
+        });
+
+        const imageeeDivs = document.querySelectorAll('.imagee');
+
+        imageeeDivs.forEach(imageeeDiv => {
+            imageeeDiv.addEventListener('click', function() {
+                this.classList.toggle('fullscreen');
+            });
+        });
+        </script>
+</body>
+</html>

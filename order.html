@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Order • Shmuelal</title>
+    <link rel="icon" href="images/core/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/core/logo.png" alt="Shmuelal Logo" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main style="min-height: 70vh; margin-bottom: 3vh;">
+        <div class="order-container">
+            <h1>Order Tickets</h1>
+            <div class="order-container-mid">
+                <div>
+                    <h5>Seat Map</h5>
+                    <div id="seat-map">
+                        <div class="seat">A1</div><div class="seat">B1</div><div class="seat-placeholder"></div><div class="seat">C1</div><div class="seat">D1</div><div class="seat" disabled>E1</div><div class="seat-placeholder"></div><div class="seat">F1</div><div class="seat">G1</div><div class="seat">A2</div><div class="seat">B2</div><div class="seat-placeholder"></div><div class="seat disabled">C2</div><div class="seat">D2</div><div class="seat">E2</div><div class="seat-placeholder"></div><div class="seat">F2</div><div class="seat disabled">G2</div><div class="seat disabled">A3</div><div class="seat">B3</div><div class="seat-placeholder"></div><div class="seat">C3</div><div class="seat">D3</div><div class="seat">E3</div><div class="seat-placeholder"></div><div class="seat">F3</div><div class="seat">G3</div><div class="seat">A4</div><div class="seat">B4</div><div class="seat-placeholder"></div><div class="seat">C4</div><div class="seat">D4</div><div class="seat">E4</div><div class="seat-placeholder"></div><div class="seat disabled">F4</div><div class="seat">G4</div><div class="seat">A5</div><div class="seat disabled">B5</div><div class="seat-placeholder"></div><div class="seat">C5</div><div class="seat">D5</div><div class="seat">E5</div><div class="seat-placeholder"></div><div class="seat">F5</div><div class="seat">G5</div><div class="seat">A6</div><div class="seat">B6</div><div class="seat-placeholder"></div><div class="seat">C6</div><div class="seat disabled">D6</div><div class="seat">E6</div><div class="seat-placeholder"></div><div class="seat">F6</div><div class="seat">G6</div> 
+                    </div>
+                    <p><i>At Shmuelal, every seat is First Class. Oh, and at Economy prices.</i></p>
+                </div>
+
+                <div class="order-data">
+                    <div id="selected-seats" style="margin-left: 10px;">
+                        <h3 id="price">USD $0.00</h3>
+                        <hr class="order-hr" style="width: 85%;">
+                        <h2>Selected Seats:</h2>
+                        <ul class="selected-seats-list" id="selected-seats-list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h1 style="margin: 40px 0 0;">Flight Upgrades</h1>
+            <div class="order-container-upgrades">
+                <div>
+                    <h4>Most Popular</h4>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="0" id="1">
+                        <label id="1n">FREE - Kosher Meal</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="15" id="4">
+                        <label id="4n">USD $15 - Unlimited Wi-Fi</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="20" id="3">
+                        <label id="3n">USD $20 - Extra Luggage</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="40" id="8">
+                        <label id="8n">USD $40 - Full Board</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="75" id="5">
+                        <label id="5n">USD $75 - ANC Headphones</label>
+                    </div>
+                </div>
+                <div>
+                    <h4>Additional</h1>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="0" id="2">
+                        <label id="2n">FREE - Vegetarian Meal</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="25" id="6">
+                        <label id="6n">USD $25 - Priority Boarding</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="35" id="7">
+                        <label id="7n">USD $35 - Comfort Kit</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="50" id="9">
+                        <label id="9n">USD $50 - Travel Insurance</label>
+                    </div>
+                    <div class="upgrade-column">
+                        <input class="checkbox" type="checkbox" value="125" id="10">
+                        <label id="10n">USD $125 - Additional Pet</label>
+                    </div>
+                </div>
+            </div>
+            <h1 style="margin-top: 60px;">Special Requests</h1>
+            <div class="order-container-mid">
+                <div class="order-special-card" id="special-requests">
+                    <h1><span style="font-size: 24px;">Disabled?</span><br>We're here to help.</h1>
+                    <div class="order-special-card image"></div>
+                    <button class="special-request-btn" id="special-request-btn">I need assistance</button>
+                </div>
+                <div class="order-special-card" id="contact">
+                    <h1 style="font-size: 24px;">Get in Touch</h1>
+                    <p style="font-size: 18px; padding: 0 34px; text-align: left;">Got any questions or requests?<br>Please let us know here.</p>
+                    <textarea placeholder="Write here"></textarea>
+                    <button class="special-request-btn" style="margin-top: 7px;" id="contact-btn">Save Request</button>
+                </div>
+            </div>
+            <h1 style="margin-top: 60px;">Checkout</h1>
+            <div class="order-checkout-container">
+                <div class="order-checkout-top">
+                    <label>Seats</label>
+                    <label>Upgrades</label>
+                    <label>Total</label>
+                </div>
+                <div class="order-checkout-middle">
+                    <div style="flex: 1; margin-top: 10px;">
+                        <ul class="selected-seats-list" id="checkout-seats-list"></ul>
+                    </div>
+                    <div style="flex: 1; margin-top: 10px;">
+                        <ul class="selected-seats-list" id="checkout-upgrades-list" style="width: 100%;"></ul>
+                    </div>
+                    <div style="flex: 1; margin-top: 10px;">
+                        <label style="display: block; font-size: 18px;" id="checkout-seats-price">USD $0.00 - Seats</label>
+                        <label style="display: block; font-size: 18px;" id="checkout-upgrades-price">USD $0.00 - Upgrades</label>
+                        <label style="display: block; margin-top: 30px;" id="checkout-price">USD $0.00</label>
+                    </div>
+                </div>
+                <div class="order-checkout-bottom">
+                    <button id="checkout-btn" style="margin: 0;">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright © 2024 Shmuelal Ltd. All rights reserved.</p>
+        <hr>
+        <div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+    <script>
+        var _totalSeatPrice = 0;
+        var _totalUpgradesPrice = 0;
+
+        document.getElementById("special-request-btn").addEventListener("click", function() {
+            var buttonText = document.getElementById("special-request-btn-text");
+            var divv = document.getElementById("special-requests");
+            defaultHeight = 320;
+            if (this.classList.contains("green-button")) {
+                this.classList.remove("green-button");
+                buttonText.style.opacity = "0";
+                divv.style.height = defaultHeight + "px";
+
+            } else {
+                this.classList.add("green-button");
+                if (!buttonText) {
+                    buttonText = document.createElement("span");
+                    buttonText.id = "special-request-btn-text";
+                    buttonText.textContent = "Assistance will be waiting at the airport.";
+                    divv.appendChild(buttonText);
+                }
+                buttonText.style.opacity = "1";
+                divv.style.height = (divv.clientHeight + 0) + "px";
+            }
+        });
+
+        document.getElementById("contact-btn").addEventListener("click", function() {
+            var buttonText = document.getElementById("contact-btn-text");
+            var divv = document.getElementById("contact");
+            defaultHeight = 320;
+            if (this.classList.contains("green-button")) {
+                this.classList.remove("green-button");
+                buttonText.style.opacity = "0";
+                divv.style.height = defaultHeight + "px";
+                
+            } else {
+                this.classList.add("green-button");
+                if (!buttonText) {
+                    buttonText = document.createElement("span");
+                    buttonText.id = "contact-btn-text";
+                    buttonText.textContent = "Your inquiry has been saved.";
+                    divv.appendChild(buttonText);
+                }
+                buttonText.style.opacity = "1";
+                divv.style.height = (divv.clientHeight + 0) + "px";
+            }
+        });
+        
+        const seats = document.querySelectorAll('.seat:not(.disabled)');
+        const selectedSeatsList = document.getElementById('selected-seats-list');
+        const selectedSeatsList2 = document.getElementById('checkout-seats-list');
+    
+        seats.forEach(seat => {
+            seat.addEventListener('click', () => {
+                seat.classList.toggle('selected');
+                updateSelectedSeats();
+            });
+        });
+
+        const totalPrice = document.getElementById("checkout-price");
+
+        function updateSelectedSeats() {
+            const selectedSeats = document.querySelectorAll('.selected');
+            selectedSeatsList.innerHTML = '';
+            selectedSeatsList2.innerHTML = '';
+
+            let totalSeatPrice = 0;
+            let seatPrice = 800;
+
+            const priceElement = document.getElementById('price');
+
+            selectedSeats.forEach(selectedSeat => {
+                const li = document.createElement('li');
+                const li2 = document.createElement('li');
+                const seatNumber = selectedSeat.textContent;
+                li.textContent = `Seat ${seatNumber} - $${seatPrice.toFixed(2)}`;
+                li2.textContent = `${seatNumber} - $${seatPrice.toFixed(2)}`;
+                selectedSeatsList.appendChild(li);
+                selectedSeatsList2.appendChild(li2);
+                totalSeatPrice += seatPrice;
+            });
+
+            _totalSeatPrice = totalSeatPrice;
+
+            priceElement.textContent = "USD $" + totalSeatPrice.toFixed(2);
+            document.getElementById("checkout-price").textContent = "USD $" + (_totalSeatPrice + _totalUpgradesPrice).toFixed(2);
+            document.getElementById("checkout-seats-price").textContent = "USD $" + totalSeatPrice.toFixed(2) + " - Seats";
+        }
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const totalPriceDisplay = document.getElementById('checkout-upgrades-price');
+        const upgradeList = document.getElementById('checkout-upgrades-list');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                let totalUpgradesPrice = 0;
+                let upgrades = [];
+                checkboxes.forEach(cb => {
+                    if (cb.checked) {
+                        const upgradeName = document.getElementById(cb.id + 'n').textContent;
+                        upgrades.push(upgradeName);
+                        totalUpgradesPrice += parseInt(cb.value);
+                    }
+                });
+
+                _totalUpgradesPrice = totalUpgradesPrice;
+
+                totalPriceDisplay.textContent = `USD $${totalUpgradesPrice.toFixed(2)} - Upgrades`;
+                totalPrice.textContent = "USD $" + (_totalSeatPrice + _totalUpgradesPrice).toFixed(2);
+                updateUpgradeList(upgrades);
+            });
+        });
+
+        function updateUpgradeList(upgrades) {
+            upgradeList.innerHTML = '';
+            upgrades.forEach(upgrade => {
+                const li = document.createElement('li');
+                li.textContent = upgrade;
+                upgradeList.appendChild(li);
+            });
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            const selectedSeats = document.querySelectorAll('.selected');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            if (selectedSeats.length > 0) {
+                const selectedSeatsArray = Array.from(selectedSeats).map(selectedSeat => selectedSeat.textContent);
+                const selectedSeatsQueryParam = encodeURIComponent(selectedSeatsArray.join(','));
+
+                const selectedUpgradesArray = Array.from(checkboxes).map(checkbox => checkbox.id);
+                const selectedUpgradesQueryParam = encodeURIComponent(selectedUpgradesArray.join(','));
+
+                let url = `checkout.html?seats=${selectedSeatsQueryParam}`;
+                if (selectedUpgradesArray.length > 0) {
+                    url += `&upgrades=${selectedUpgradesQueryParam}`;
+                }
+
+                window.location.href = url;
+            } else {
+                alert('Please select at least one seat.');
+            }
+        });
+    </script>
+</body>
+</html>
