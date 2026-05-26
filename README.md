@@ -7,3 +7,10 @@ Built using HTML, CSS, and JavaScript, this project showcases a complete and fun
 My assigned task was implementing a functional click-to-expand image feature, allowing images to expand and collapse dynamically.
 
 Final project grade: 100/100.
+
+Screenshots:
+---
+
+![Image](shmuelal1.png)
+![Image](shmuelal2.png)
+![Image](shmuelal3.png)
